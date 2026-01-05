@@ -4,5 +4,4 @@ class Vehicle:
         self.model = model
         self.battery_percentage = battery_percentage
 
-    def __str__(self):
-        return f"ID:{self.vehicle_id}, Model:{self.model}, Battery:{self.battery_percentage}%"
+
