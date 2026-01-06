@@ -91,21 +91,21 @@ class FleetManager:
     # provides info about vehicle status across all hubs
     def get_vehicle_status_count(self):
 
-        status_count={
-            "Available":0,
-            "On Trip":0,
-            "Under Maintenance":0
+        status_count = {
+            "Available": 0,
+            "On Trip": 0,
+            "Under Maintenance": 0
         }
 
         for vehicles in self.hubs.values():
             for vehicle in vehicles:
-                status=vehicle.get_maintenance_status()
+                status = vehicle.get_maintenance_status()
                 if status in status_count:
-                    status_count[status]+=1
+                    status_count[status] += 1
 
         return status_count
 
-     # to display the fleet status summary
+    # to display the fleet status summary
     def display_status_summary(self):
 
         status_count = self.get_vehicle_status_count()
@@ -113,4 +113,24 @@ class FleetManager:
         print("\n Fleet Status Summary:")
 
         for status, count in status_count.items():
-            print(f"{status} : {count} vehicles\n")    #print(f"{status:<20}: {count}")
+            print(f"{status} : {count} vehicles\n")  # print(f"{status:<20}: {count}")
+
+    #sorting vehicles in a hub based on model name
+    def sort_vehicles_by_model(self, hub_name):
+        if hub_name not in self.hubs:
+            print("Hub does not exist.")
+            return
+
+        vehicles = self.hubs[hub_name]
+
+        if not vehicles:
+            print("No vehicles available in this hub. ")
+            return
+
+        vehicles.sort(key=lambda vehicle: vehicle.model)
+
+        print(f"Vehicles in '{hub_name}' hub sorted by model:\n")
+        for vehicle in vehicles:
+            print(vehicle)
+
+

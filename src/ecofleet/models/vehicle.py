@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
 
-#declaring vehicle class as abstract
+
+# declaring vehicle class as abstract
 class Vehicle(ABC):
-    def __init__(self, vehicle_id, model, battery_percentage,  maintenance_status, rental_price):
+    def __init__(self, vehicle_id, model, battery_percentage, maintenance_status, rental_price):
         self.vehicle_id = vehicle_id
         self.model = model
 
-        #private attributes
+        # private attributes
         self.__battery_percentage = battery_percentage
         self.__maintenance_status = maintenance_status
         self.__rental_price = rental_price
@@ -15,7 +16,7 @@ class Vehicle(ABC):
     def get_battery_percentage(self):
         return self.__battery_percentage
 
-    #battery percentage must be between 0 to 100
+    # battery percentage must be between 0 to 100
     def set_battery_percentage(self, battery_percentage):
         if 0 <= battery_percentage <= 100:
             self.__battery_percentage = battery_percentage
@@ -31,14 +32,14 @@ class Vehicle(ABC):
     def get_rental_price(self):
         return self.__rental_price
 
-    #rental price cannot be negative
+    # rental price cannot be negative
     def set_rental_price(self, price):
         if price > 0:
             self.__rental_price = price
         else:
             raise ValueError("Rental price must be greater than 0")
 
-    #adding abstract method
+    # adding abstract method
     @abstractmethod
     def calculate_trip_cost(self, distance):
         pass
@@ -48,3 +49,12 @@ class Vehicle(ABC):
         if isinstance(other, Vehicle):
             return self.vehicle_id == other.vehicle_id
         return False
+
+    def __str__(self):
+        return (
+            f"Vehicle ID: {self.vehicle_id}, "
+            f"Model: {self.model}, "
+            f"Battery: {self.get_battery_percentage()}%, "
+            f"Status: {self.get_maintenance_status()}, "
+            f"Rental Price: {self.get_rental_price()}"
+        )
