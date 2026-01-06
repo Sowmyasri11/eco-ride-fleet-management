@@ -38,3 +38,21 @@ class FleetManager:
         # Display each hub
         for hub, vehicles in self.hubs.items():
             print(f"{hub} -> {len(vehicles)} vehicles")
+
+    # search & return all vehicles present in  particular hub
+    def search_vehicles_by_hub(self, hub_name):
+        if hub_name not in self.hubs:
+            print("Hub does not exist.")
+            return []
+
+        return self.hubs[hub_name]
+
+    # searching  vehicles across all hubs with battery percentage greater than 80%
+    def search_high_battery_vehicles(self):
+        # flatten all  lists and filter using lambda
+        return list(
+            filter(
+                lambda v: v.get_battery_percentage() > 80,
+                [vehicle for vehicles in self.hubs.values() for vehicle in vehicles]
+            )
+        )
