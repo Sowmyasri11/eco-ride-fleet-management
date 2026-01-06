@@ -86,7 +86,7 @@ class FleetManager:
                 for v in v_list:
                     print(f"- {v.vehicle_id} | {v.model} | Battery: {v.get_battery_percentage()}%")
 
-            return categorized
+        return categorized
 
     # provides info about vehicle status across all hubs
     def get_vehicle_status_count(self):
