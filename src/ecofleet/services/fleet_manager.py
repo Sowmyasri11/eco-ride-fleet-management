@@ -8,6 +8,7 @@ class FleetManager:
         self.hubs = {}
 
     def add_hub(self, hub_name):
+
         # checking if hub already exists
         if hub_name in self.hubs:
             print("Hub already exists.")
