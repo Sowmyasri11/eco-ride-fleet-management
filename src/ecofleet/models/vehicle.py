@@ -1,4 +1,7 @@
-class Vehicle:
+from abc import ABC, abstractmethod
+
+#declaring vehicle class as abstract
+class Vehicle(ABC):
     def __init__(self, vehicle_id, model, battery_percentage,  maintenance_status, rental_price):
         self.vehicle_id = vehicle_id
         self.model = model
@@ -34,3 +37,8 @@ class Vehicle:
             self.__rental_price = price
         else:
             raise ValueError("Rental price must be greater than 0")
+
+    #adding abstract method
+    @abstractmethod
+    def calculate_trip_cost(self, distance):
+        pass
