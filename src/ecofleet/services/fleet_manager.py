@@ -60,6 +60,7 @@ class FleetManager:
                 [vehicle for vehicles in self.hubs.values() for vehicle in vehicles]
             )
         )
+
     def categorized_view(self):
 
         '''
@@ -67,9 +68,9 @@ class FleetManager:
         it return a dictionary : type -> list of vehicles
         '''
 
-        categorized={"ElectricCar": [], "ElectricScooter":[]}
+        categorized = {"ElectricCar": [], "ElectricScooter": []}
 
-        #traverse through all hubs and vehicles
+        # traverse through all hubs and vehicles
         for vehicles in self.hubs.values():
             for v in vehicles:
                 if isinstance(v, ElectricCar):
@@ -77,9 +78,9 @@ class FleetManager:
                 elif isinstance(v, ElectricScooter):
                     categorized["ElectricScooter"].append(v)
 
-            #display the vehicles
+            # display the vehicles
             print("Categorized view")
-            for v_type,v_list in categorized.items():
+            for v_type, v_list in categorized.items():
                 print(f"\n{v_type}s ({len(v_list)}):")
                 for v in v_list:
                     print(f"- {v.vehicle_id} | {v.model} | Battery: {v.get_battery_percentage()}%")
