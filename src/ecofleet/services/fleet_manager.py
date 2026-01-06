@@ -1,3 +1,7 @@
+from src.ecofleet.models.electric_car import ElectricCar
+from src.ecofleet.models.electric_scooter import ElectricScooter
+
+
 class FleetManager:
     def __init__(self):
         # Dictionary: Hub Name -> List of Vehicle objects
@@ -56,3 +60,28 @@ class FleetManager:
                 [vehicle for vehicles in self.hubs.values() for vehicle in vehicles]
             )
         )
+    def categorized_view(self):
+
+        '''
+        Displaying vehicles grouped by their type (Car/Scooter)
+        it return a dictionary : type -> list of vehicles
+        '''
+
+        categorized={"ElectricCar": [], "ElectricScooter":[]}
+
+        #traverse through all hubs and vehicles
+        for vehicles in self.hubs.values():
+            for v in vehicles:
+                if isinstance(v, ElectricCar):
+                    categorized["ElectricCar"].append(v)
+                elif isinstance(v, ElectricScooter):
+                    categorized["ElectricScooter"].append(v)
+
+            #display the vehicles
+            print("Categorized view")
+            for v_type,v_list in categorized.items():
+                print(f"\n{v_type}s ({len(v_list)}):")
+                for v in v_list:
+                    print(f"- {v.vehicle_id} | {v.model} | Battery: {v.get_battery_percentage()}%")
+
+            return categorized
