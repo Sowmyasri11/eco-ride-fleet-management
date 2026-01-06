@@ -42,3 +42,9 @@ class Vehicle(ABC):
     @abstractmethod
     def calculate_trip_cost(self, distance):
         pass
+
+    # 2 vehicles are considered equal if they have the same vehicle_id.
+    def __eq__(self, other):
+        if isinstance(other, Vehicle):
+            return self.vehicle_id == other.vehicle_id
+        return False
