@@ -11,8 +11,7 @@ class ElectricScooter(Vehicle):
 
         self.max_speed_limit = max_speed_limit
 
-        # UC-5: Polymorphic
-        def calculate_trip_cost(self, minutes):
-
-            # $1 base + $0.15 per minute
-            return 1.0 + (0.15 * minutes)
+    #  Polymorphism
+    def calculate_trip_cost(self, minutes):
+        # $1 base + $0.15 per minute
+         return 1.0 + (0.15 * minutes)
