@@ -87,3 +87,30 @@ class FleetManager:
                     print(f"- {v.vehicle_id} | {v.model} | Battery: {v.get_battery_percentage()}%")
 
             return categorized
+
+    # provides info about vehicle status across all hubs
+    def get_vehicle_status_count(self):
+
+        status_count={
+            "Available":0,
+            "On Trip":0,
+            "Under Maintenance":0
+        }
+
+        for vehicles in self.hubs.values():
+            for vehicle in vehicles:
+                status=vehicle.get_maintenance_status()
+                if status in status_count:
+                    status_count[status]+=1
+
+        return status_count
+
+     # to display the fleet status summary
+    def display_status_summary(self):
+
+        status_count = self.get_vehicle_status_count()
+
+        print("\n Fleet Status Summary:")
+
+        for status, count in status_count.items():
+            print(f"{status} : {count} vehicles\n")    #print(f"{status:<20}: {count}")
