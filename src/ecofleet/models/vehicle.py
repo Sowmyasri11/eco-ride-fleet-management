@@ -2,6 +2,8 @@ class Vehicle:
     def __init__(self, vehicle_id, model, battery_percentage,  maintenance_status, rental_price):
         self.vehicle_id = vehicle_id
         self.model = model
+
+        #private attributes
         self.__battery_percentage = battery_percentage
         self.__maintenance_status = maintenance_status
         self.__rental_price = rental_price
@@ -10,6 +12,7 @@ class Vehicle:
     def get_battery_percentage(self):
         return self.__battery_percentage
 
+    #battery percentage must be between 0 to 100
     def set_battery_percentage(self, battery_percentage):
         if 0 <= battery_percentage <= 100:
             self.__battery_percentage = battery_percentage
@@ -25,6 +28,7 @@ class Vehicle:
     def get_rental_price(self):
         return self.__rental_price
 
+    #rental price cannot be negative
     def set_rental_price(self, price):
         if price > 0:
             self.__rental_price = price
