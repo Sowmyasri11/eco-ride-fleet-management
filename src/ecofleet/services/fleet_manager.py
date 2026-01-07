@@ -1,4 +1,5 @@
 import csv
+import json
 from src.ecofleet.models.electric_car import ElectricCar
 from src.ecofleet.models.electric_scooter import ElectricScooter
 
@@ -237,3 +238,69 @@ class FleetManager:
                 self.hubs[hub_name].append(vehicle)
 
         print("Fleet data imported successfully from CSV.")
+
+    def export_fleet_to_json(self, file_path):
+
+        fleet_data={}
+
+        for hub_name, vehicles in self.hubs.items():
+            fleet_data[hub_name]=[]
+
+            for vehicle in vehicles:
+                vehicle_dict={
+                    "vehicle_id": vehicle.vehicle_id,
+                    "model": vehicle.model,
+                    "battery_percentage": vehicle.get_battery_percentage(),
+                    "maintenance_status": vehicle.get_maintenance_status(),
+                    "rental_price": vehicle.get_rental_price(),
+
+                }
+                if isinstance(vehicle, ElectricCar):
+                    vehicle_dict["vehicle_type"] = "ElectricCar"
+                    vehicle_dict["seating_capacity"] = vehicle.seating_capacity
+                elif isinstance(vehicle, ElectricScooter):
+                    vehicle_dict["vehicle_type"] = "ElectricScooter"
+                    vehicle_dict["max_speed_limit"] = vehicle.max_speed_limit
+
+                fleet_data[hub_name].append(vehicle_dict)
+
+        with open(file_path, 'w', newline='') as file:
+            json.dump(fleet_data, file, indent=4)
+        print("fleet data exported successfully to JSON")
+
+    #Import fleet data from JSON file into the system
+    def import_fleet_from_json(self, file_path):
+        with open(file_path, mode="r") as file:
+            fleet_data=json.load(file)
+        self.hubs.clear()
+
+        for hub_name, vehicles in fleet_data.items():
+            self.hubs[hub_name] = []
+
+            for v in vehicles:
+                if v["vehicle_type"]=="ElectricCar":
+                    vehicle = ElectricCar(
+                        v["vehicle_id"],
+                        v["model"],
+                        v["battery_percentage"],
+                        v["maintenance_status"],
+                        v["rental_price"],
+                        v["seating_capacity"]
+                    )
+
+                elif v["vehicle_type"] == "ElectricScooter":
+                    vehicle = ElectricScooter(
+                        v["vehicle_id"],
+                        v["model"],
+                        v["battery_percentage"],
+                        v["maintenance_status"],
+                        v["rental_price"],
+                        v["max_speed_limit"]
+                    )
+
+                else:
+                    continue
+
+                self.hubs[hub_name].append(vehicle)
+
+        print("Fleet data imported successfully from JSON.")
