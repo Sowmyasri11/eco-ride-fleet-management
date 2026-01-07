@@ -115,7 +115,7 @@ class FleetManager:
         for status, count in status_count.items():
             print(f"{status} : {count} vehicles\n")  # print(f"{status:<20}: {count}")
 
-    #sorting vehicles in a hub based on model name
+    # sorting vehicles in a hub based on model name
     def sort_vehicles_by_model(self, hub_name):
         if hub_name not in self.hubs:
             print("Hub does not exist.")
@@ -133,4 +133,27 @@ class FleetManager:
         for vehicle in vehicles:
             print(vehicle)
 
+    # collects all vehicles from all hubs into a single list
+    def get_all_vehicles(self):
+        return [
+            vehicle for vehicles in self.hubs.values() for vehicle in vehicles
+        ]
 
+    # sort vehicles based on battery percentage (descending order)
+    def sort_vehicles_by_battery(self):
+        all_vehicles = self.get_all_vehicles()
+
+        return sorted(
+            all_vehicles,
+            key=lambda vehicle: vehicle.get_battery_percentage(),
+            reverse=True
+        )
+
+    # sorting vehicle based on rental price
+    def sort_vehicles_by_rental_price(self):
+        all_vehicles = self.get_all_vehicles()
+        return sorted(
+            all_vehicles,
+            key=lambda vehicle: vehicle.get_rental_price(),
+            reverse=True
+        )
