@@ -1,3 +1,4 @@
+import csv
 from src.ecofleet.models.electric_car import ElectricCar
 from src.ecofleet.models.electric_scooter import ElectricScooter
 
@@ -157,3 +158,82 @@ class FleetManager:
             key=lambda vehicle: vehicle.get_rental_price(),
             reverse=True
         )
+
+    # exporting all fleet data in to a csv file
+    def export_fleet_to_csv(self, file_path):
+        with open(file_path, 'w', newline='') as file:
+            writer = csv.writer(file)
+
+            writer.writerow([
+                "hub_name",
+                "vehicle_type",
+                "vehicle_id",
+                "model",
+                "battery_percentage",
+                "rental_price",
+                "extra_attribute"
+            ])
+
+            for hub_name, vehicles in self.hubs.items():
+                for vehicle in vehicles:
+                    if isinstance(vehicle, ElectricCar):
+                        vehicle_type = "ElectricCar"
+                        extra_value = vehicle.seating_capacity
+                    elif isinstance(vehicle, ElectricScooter):
+                        vehicle_type = "ElectricScooter"
+                        extra_value = vehicle.max_speed_limit
+                    else:
+                        continue
+
+                    writer.writerow([
+                        hub_name,
+                        vehicle_type,
+                        vehicle.vehicle_id,
+                        vehicle.model,
+                        vehicle.get_battery_percentage(),
+                        vehicle.get_maintenance_status(),
+                        vehicle.get_rental_price(),
+                        extra_value
+
+                    ])
+
+            print("Fleet data exported successfully")
+    # Importing fleet data from CSV file into the system
+    def import_fleet_from_csv(self, file_path):
+
+        import csv
+
+        with open(file_path, mode="r") as file:
+            reader = csv.DictReader(file)
+
+            for row in reader:
+                hub_name = row["hub_name"]
+
+                if hub_name not in self.hubs:
+                    self.hubs[hub_name] = []
+
+                if row["vehicle_type"] == "ElectricCar":
+                    vehicle = ElectricCar(
+                        row["vehicle_id"],
+                        row["model"],
+                        int(row["battery_percentage"]),
+                        row["maintenance_status"],
+                        float(row["rental_price"]),
+                        int(row["extra_attribute"])
+                    )
+
+                elif row["vehicle_type"] == "ElectricScooter":
+                    vehicle = ElectricScooter(
+                        row["vehicle_id"],
+                        row["model"],
+                        int(row["battery_percentage"]),
+                        row["maintenance_status"],
+                        float(row["rental_price"]),
+                        int(row["extra_attribute"])
+                    )
+                else:
+                    continue
+
+                self.hubs[hub_name].append(vehicle)
+
+        print("Fleet data imported successfully from CSV.")
