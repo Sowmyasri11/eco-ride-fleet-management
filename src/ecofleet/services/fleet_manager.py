@@ -171,6 +171,7 @@ class FleetManager:
                 "vehicle_id",
                 "model",
                 "battery_percentage",
+                "maintenance_status",
                 "rental_price",
                 "extra_attribute"
             ])
@@ -195,14 +196,12 @@ class FleetManager:
                         vehicle.get_maintenance_status(),
                         vehicle.get_rental_price(),
                         extra_value
-
                     ])
 
             print("Fleet data exported successfully")
+
     # Importing fleet data from CSV file into the system
     def import_fleet_from_csv(self, file_path):
-
-        import csv
 
         with open(file_path, mode="r") as file:
             reader = csv.DictReader(file)
@@ -241,20 +240,20 @@ class FleetManager:
 
     def export_fleet_to_json(self, file_path):
 
-        fleet_data={}
+        fleet_data = {}
 
         for hub_name, vehicles in self.hubs.items():
-            fleet_data[hub_name]=[]
+            fleet_data[hub_name] = []
 
             for vehicle in vehicles:
-                vehicle_dict={
+                vehicle_dict = {
                     "vehicle_id": vehicle.vehicle_id,
                     "model": vehicle.model,
                     "battery_percentage": vehicle.get_battery_percentage(),
                     "maintenance_status": vehicle.get_maintenance_status(),
                     "rental_price": vehicle.get_rental_price(),
-
                 }
+
                 if isinstance(vehicle, ElectricCar):
                     vehicle_dict["vehicle_type"] = "ElectricCar"
                     vehicle_dict["seating_capacity"] = vehicle.seating_capacity
@@ -264,21 +263,23 @@ class FleetManager:
 
                 fleet_data[hub_name].append(vehicle_dict)
 
-        with open(file_path, 'w', newline='') as file:
+        with open(file_path, 'w') as file:
             json.dump(fleet_data, file, indent=4)
+
         print("fleet data exported successfully to JSON")
 
     #Import fleet data from JSON file into the system
     def import_fleet_from_json(self, file_path):
         with open(file_path, mode="r") as file:
-            fleet_data=json.load(file)
+            fleet_data = json.load(file)
+
         self.hubs.clear()
 
         for hub_name, vehicles in fleet_data.items():
             self.hubs[hub_name] = []
 
             for v in vehicles:
-                if v["vehicle_type"]=="ElectricCar":
+                if v["vehicle_type"] == "ElectricCar":
                     vehicle = ElectricCar(
                         v["vehicle_id"],
                         v["model"],
@@ -297,7 +298,6 @@ class FleetManager:
                         v["rental_price"],
                         v["max_speed_limit"]
                     )
-
                 else:
                     continue
 
