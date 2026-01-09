@@ -1,0 +1,2 @@
+hub_name,vehicle_type,vehicle_id,model,battery_percentage,maintenance_status,rental_price,extra_attribute
+Airport,ElectricCar,CAR101,Tesla 2x03,70,Available,3200.0,5

@@ -1,0 +1,14 @@
+{
+    "Airport": [
+        {
+            "vehicle_id": "CAR101",
+            "model": "Tesla 2x03",
+            "battery_percentage": 70,
+            "maintenance_status": "Available",
+            "rental_price": 3200.0,
+            "vehicle_type": "ElectricCar",
+            "seating_capacity": 5
+        }
+    ],
+    "Downtown": []
+}
