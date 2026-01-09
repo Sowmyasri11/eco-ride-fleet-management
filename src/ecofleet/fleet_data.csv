@@ -1,2 +1,4 @@
-hub_name,vehicle_type,vehicle_id,model,battery_percentage,maintenance_status,rental_price,extra_attribute
-Airport,ElectricCar,CAR101,Tesla 2x03,70,Available,3200.0,5
+hub_name,vehicle_type,vehicle_id,model,battery_percentage,maintenance_status,rental_price,Seating capacity/Maximum Speed limit
+airport,ElectricCar,CAR101,Tesla,83,Available,1999.0,5
+airport,ElectricScooter,AP12305,Duke,78,On Trip,699.0,80
+downtown,ElectricCar,CAR102,Swift,81,Under Maintenance,500.0,5

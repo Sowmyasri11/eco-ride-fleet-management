@@ -1,14 +1,33 @@
 {
-    "Airport": [
+    "airport": [
         {
             "vehicle_id": "CAR101",
-            "model": "Tesla 2x03",
-            "battery_percentage": 70,
+            "model": "Tesla",
+            "battery_percentage": 83,
             "maintenance_status": "Available",
-            "rental_price": 3200.0,
+            "rental_price": 1999.0,
+            "vehicle_type": "ElectricCar",
+            "seating_capacity": 5
+        },
+        {
+            "vehicle_id": "AP12305",
+            "model": "Duke",
+            "battery_percentage": 78,
+            "maintenance_status": "On Trip",
+            "rental_price": 699.0,
+            "vehicle_type": "ElectricScooter",
+            "max_speed_limit": 80
+        }
+    ],
+    "downtown": [
+        {
+            "vehicle_id": "CAR102",
+            "model": "Swift",
+            "battery_percentage": 81,
+            "maintenance_status": "Under Maintenance",
+            "rental_price": 500.0,
             "vehicle_type": "ElectricCar",
             "seating_capacity": 5
         }
-    ],
-    "Downtown": []
+    ]
 }
