@@ -219,7 +219,7 @@ class FleetManager:
                         int(row["battery_percentage"]),
                         row["maintenance_status"],
                         float(row["rental_price"]),
-                        int(row["extra_attribute"])
+                        int(row["Seating Capacity/Maximum speed limit"])
                     )
 
                 elif row["vehicle_type"] == "ElectricScooter":
@@ -229,7 +229,7 @@ class FleetManager:
                         int(row["battery_percentage"]),
                         row["maintenance_status"],
                         float(row["rental_price"]),
-                        int(row["extra_attribute"])
+                        int(row["Seating Capacity/Maximum speed limit"])
                     )
                 else:
                     continue
