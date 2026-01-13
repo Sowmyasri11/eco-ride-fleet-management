@@ -50,4 +50,13 @@ def test_categorized_view(fleet):
     assert car1 in categories["ElectricCar"]
     assert scooter1 in categories["ElectricScooter"]
 
+#testing vehicle status count
+def test_vehicle_status_count(fleet):
+    fm, car1, _, scooter1, _ = fleet
+    car1.set_maintenance_status("On Trip")
+    scooter1.set_maintenance_status("Under Maintenance")
+
+    status = fm.get_vehicle_status_count()
+    assert status["On Trip"] == 1
+    assert status["Under Maintenance"] == 1
 
