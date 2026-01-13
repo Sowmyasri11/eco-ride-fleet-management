@@ -7,6 +7,7 @@ class Vehicle(ABC):
         self.vehicle_id = vehicle_id
         self.model = model
 
+
         # private attributes
         self.__battery_percentage = battery_percentage
         self.__maintenance_status = maintenance_status
