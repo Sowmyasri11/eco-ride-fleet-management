@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a91229b-ad9a-454f-909a-ff4b970a1a29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/models.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tests/test_fleet_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/electric_scooter.py" beforeDir="false" afterPath="$PROJECT_DIR$/electric_scooter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/vehicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/test_fleet_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/test_fleet_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +28,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "git-widget-placeholder": "Merging uc-14-json-integration",
+    "git-widget-placeholder": "uc-14-json-integration",
     "last_opened_file_path": "C:/Users/HP/PycharmProjects/edo-ride-fleet-management/src/ecofleet/models",
     "vue.rearranger.settings.migration": "true"
   }
