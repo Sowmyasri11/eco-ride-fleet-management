@@ -11,7 +11,8 @@ class ElectricScooter(Vehicle):
 
         self.max_speed_limit = max_speed_limit
 
-    # Polymorphism
+     #  Polymorphism
     def calculate_trip_cost(self, minutes):
+
         # $1 base + $0.15 per minute
         return 1.0 + (0.15 * minutes)
