@@ -2,13 +2,9 @@
 __pycache__/
 *.pyc
 
-# Virtual environments
-.venv/
-my_venv/
-
 # PyCharm
 .idea/
 
-# OS files
-.DS_Store
-Thumbs.db
+# Virtual environments
+.venv/
+my_venv/
